@@ -522,6 +522,15 @@ header.scrolled .logo img{
   color: var(--text-muted);
   margin-top: -2px;  /* acerca la nota a la línea de packs */
 }
+        .packs-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.packs-row b{
+  color: var(--text-main);
+}
         /* Pasos */
         .steps-container {
             display: flex;
@@ -872,11 +881,28 @@ header.scrolled .logo img{
                             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Todo lo incluido en el Asesoramiento Online.</li>
                             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Sesiones presenciales para perfeccionar técnica.</li>
                             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> En gimnasio, domicilio o salas de reserva.</li>
-                        <li class="packs-inline">
-  <strong>Packs:</strong>
-  <span>4 (40€) · 8 (37€) · 12 (34€) · 16 (30€)</span>
-  <span class="packs-note">* +50% costo sala/gimnasio</span>
+<li class="packs-inline">
+  <strong>Precio por sesión (según pack):</strong>
+
+  <span class="packs-row">
+    Pack 4 sesiones: <b>40€ / sesión</b>
+  </span>
+
+  <span class="packs-row">
+    Pack 8 sesiones: <b>37€ / sesión</b>
+  </span>
+
+  <span class="packs-row">
+    Pack 12 sesiones: <b>34€ / sesión</b>
+  </span>
+
+  <span class="packs-row">
+    Pack 16 sesiones: <b>30€ / sesión</b>
+  </span>
+    
+    <span class="packs-note">* +50% costo sala/gimnasio</span>
 </li>
+                            
                         </ul>
                         <a href="https://wa.me/34632216120?text=Hola%20Sergio,%20me%20interesa%20el%20Asesoramiento%20Online%20+%20Sesiones%20Presenciales." target="_blank" class="btn btn-primary" style="width: 100%;">Contratar Híbrido</a>
                     </div>
