@@ -168,10 +168,6 @@ header.scrolled .logo img{
         height: 56px;     /* tamaño con scroll en móvil */
     }
 
-    /* Extra recomendado: el hero baja un poco para dejar espacio al header fijo */
-    .hero{
-        padding-top: 6.5rem;
-    }
 }
 
         .nav-links {
@@ -695,14 +691,48 @@ header.scrolled .logo img{
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-ctas { flex-direction: column; }
-            .metodo-grid, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .about-grid { padding: 2rem; }
-            section { padding: 4rem 0; }
-            .step-item { flex-direction: column; gap: 0.5rem; }
-        }
+@media (max-width: 768px) {
+
+    /* MOSTRAR el menú en móvil */
+    .nav-links{
+        display: flex;          /* antes lo ocultabas */
+        gap: 1rem;              /* menos espacio entre links */
+    }
+
+    .nav-links a{
+        font-size: 0.85rem;     /* un poco más pequeño */
+        white-space: nowrap;    /* evita que se parta en 2 líneas */
+    }
+
+    /* Ajuste de layout del header para que quepa */
+    .nav-container{
+        gap: 1rem;
+    }
+    /* Permite que el menú se adapte si no cabe en una línea */
+.nav-links{
+    flex-wrap: wrap;           /* si no cabe, baja a segunda línea */
+    justify-content: flex-end; /* lo mantiene alineado a la derecha */
+}
+
+/* Reduce padding lateral para ganar espacio */
+.container{
+    padding: 0 1rem;
+}
+
+/* Evita que el logo se encoja cuando falta espacio */
+.logo{
+    flex-shrink: 0;
+}
+
+    .hero-ctas { flex-direction: column; }
+    .metodo-grid, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-grid { padding: 2rem; }
+    section { padding: 4rem 0; }
+    .step-item { flex-direction: column; gap: 0.5rem; }
+
+    /* Si lo estabas usando, deja el hero con aire */
+    .hero{ padding-top: 6.5rem; }
+}
     </style>
 </head>
 <body>
