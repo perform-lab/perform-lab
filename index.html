@@ -143,17 +143,35 @@
             gap: 0.5rem;
         }
 
-        /* Logo: grande al inicio, compacto al hacer scroll */
+/* ===== LOGO DEL HEADER (RESPONSIVE) ===== */
+
+/* Desktop / general */
 header .logo img{
-    height: 200px;      /* tamaño normal (sin scroll) */
+    height: 200px;   /* tamaño en ordenador */
     width: auto;
     filter: invert(1);
     transition: var(--transition);
 }
 
-/* Al hacer scroll, el header se compacta y el logo también */
+/* Cuando haces scroll (desktop y móvil) */
 header.scrolled .logo img{
     height: 110px;
+}
+
+/* Móvil: logo más pequeño para que no tape el hero */
+@media (max-width: 768px){
+    header .logo img{
+        height: 84px;     /* tamaño normal en móvil */
+    }
+
+    header.scrolled .logo img{
+        height: 56px;     /* tamaño con scroll en móvil */
+    }
+
+    /* Extra recomendado: el hero baja un poco para dejar espacio al header fijo */
+    .hero{
+        padding-top: 6.5rem;
+    }
 }
 
         .nav-links {
