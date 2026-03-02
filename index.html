@@ -447,6 +447,7 @@ header.scrolled .logo img{
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+            align-items: stretch;
         }
 
         .service-card {
@@ -459,6 +460,7 @@ header.scrolled .logo img{
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            height: 100%;
         }
 
         .service-card:hover {
@@ -502,20 +504,24 @@ header.scrolled .logo img{
             margin-top: 0.2rem;
         }
 
-        .table-packs {
-            width: 100%;
-            margin-top: 1rem;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        
-        .table-packs th, .table-packs td {
-            padding: 0.5rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
+        /* ===== Packs compactos (Online + Presencial) ===== */
+.packs-inline{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;      /* menos separación vertical */
+  font-size: 0.9rem;
+  line-height: 1.35; /* más compacto */
+}
 
+.packs-inline strong{
+  color: var(--text-main);
+}
+
+.packs-note{
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: -2px;  /* acerca la nota a la línea de packs */
+}
         /* Pasos */
         .steps-container {
             display: flex;
@@ -694,45 +700,46 @@ header.scrolled .logo img{
         /* Responsive */
 @media (max-width: 768px) {
 
-    /* MOSTRAR el menú en móvil */
-    .nav-links{
-        display: flex;          /* antes lo ocultabas */
-        gap: 1rem;              /* menos espacio entre links */
-    }
+  /* MOSTRAR el menú en móvil */
+  .nav-links{
+      display: flex;
+      gap: 1rem;
+  }
 
-    .nav-links a{
-        font-size: 0.85rem;     /* un poco más pequeño */
-        white-space: nowrap;    /* evita que se parta en 2 líneas */
-    }
+  .nav-links a{
+      font-size: 0.85rem;
+      white-space: nowrap;
+  }
 
-    /* Ajuste de layout del header para que quepa */
-    .nav-container{
-        gap: 1rem;
-    }
-    /* Permite que el menú se adapte si no cabe en una línea */
-.nav-links{
-    flex-wrap: wrap;           /* si no cabe, baja a segunda línea */
-    justify-content: flex-end; /* lo mantiene alineado a la derecha */
+  .nav-container{
+      gap: 1rem;
+  }
+
+  .nav-links{
+      flex-wrap: wrap;
+      justify-content: flex-end;
+  }
+
+  .container{
+      padding: 0 1rem;
+  }
+
+  .logo{
+      flex-shrink: 0;
+  }
+
+  .hero-ctas { flex-direction: column; }
+  .metodo-grid, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-grid { padding: 2rem; }
+  section { padding: 4rem 0; }
+  .step-item { flex-direction: column; gap: 0.5rem; }
+
+  .hero{ padding-top: 6.5rem; }
 }
 
-/* Reduce padding lateral para ganar espacio */
-.container{
-    padding: 0 1rem;
-}
-
-/* Evita que el logo se encoja cuando falta espacio */
-.logo{
-    flex-shrink: 0;
-}
-
-    .hero-ctas { flex-direction: column; }
-    .metodo-grid, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .about-grid { padding: 2rem; }
-    section { padding: 4rem 0; }
-    .step-item { flex-direction: column; gap: 0.5rem; }
-
-    /* Si lo estabas usando, deja el hero con aire */
-    .hero{ padding-top: 6.5rem; }
+/* Fuera del @media */
+.service-card .btn{
+  margin-top: auto;
 }
     </style>
 </head>
@@ -865,16 +872,11 @@ header.scrolled .logo img{
                             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Todo lo incluido en el Asesoramiento Online.</li>
                             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Sesiones presenciales para perfeccionar técnica.</li>
                             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> En gimnasio, domicilio o salas de reserva.</li>
-                            <li>
-                                <table class="table-packs">
-                                    <tr><th>Packs</th><th>Precio/sesión</th></tr>
-                                    <tr><td>4 sesiones</td><td>40 €</td></tr>
-                                    <tr><td>8 sesiones</td><td>37 €</td></tr>
-                                    <tr><td>12 sesiones</td><td>34 €</td></tr>
-                                    <tr><td>16 sesiones</td><td>30 €</td></tr>
-                                </table>
-                                <div style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--text-muted);">* +50% costo de sala o gimnasio</div>
-                            </li>
+                        <li class="packs-inline">
+  <strong>Packs:</strong>
+  <span>4 (40€) · 8 (37€) · 12 (34€) · 16 (30€)</span>
+  <span class="packs-note">* +50% costo sala/gimnasio</span>
+</li>
                         </ul>
                         <a href="https://wa.me/34632216120?text=Hola%20Sergio,%20me%20interesa%20el%20Asesoramiento%20Online%20+%20Sesiones%20Presenciales." target="_blank" class="btn btn-primary" style="width: 100%;">Contratar Híbrido</a>
                     </div>
