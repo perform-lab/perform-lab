@@ -668,7 +668,13 @@ header.scrolled .logo img{
   transition: transform 0.35s cubic-bezier(.25,.8,.25,1);
   will-change: transform;
 }
-
+/* Solo escritorio: agranda el tamaño inicial del logo3 */
+@media (min-width: 769px){
+  .footer-logo{
+    width: 400px;   /* cámbialo a tu gusto */
+    max-width: none;
+  }
+}
 /* Glow dinámico */
 .footer-logo-wrapper::before{
   content: "";
