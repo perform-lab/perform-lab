@@ -665,7 +665,7 @@ header.scrolled .logo img{
   width: min(260px, 70vw);
   height: auto;
   object-fit: contain;
-  transition: transform 0.2s ease;
+  transition: transform 0.35s cubic-bezier(.25,.8,.25,1);
   will-change: transform;
 }
 
@@ -1189,7 +1189,7 @@ if (logoWrapper && logo) {
         const rotateX = ((y / rect.height) - 0.5) * -10;
         const rotateY = ((x / rect.width) - 0.5) * 10;
 
-        logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.15)`;
     });
 
     logoWrapper.addEventListener('mouseleave', () => {
