@@ -651,13 +651,39 @@ header.scrolled .logo img{
   text-align: center;
 }
 
-.footer-logo{
-  width: min(260px, 70vw); /* en móvil se adapta al ancho de pantalla */
-  height: auto;            /* clave: NO fijar height */
-  margin-bottom: 1.5rem;
-  object-fit: contain;     /* extra de seguridad: nunca deforma */
+/* ===== FOOTER LOGO INTERACTIVO ===== */
+
+.footer-logo-wrapper{
+  position: relative;
+  display: inline-block;
+  border-radius: 24px;
+  padding: 1.5rem;
+  perspective: 800px;
 }
 
+.footer-logo{
+  width: min(260px, 70vw);
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+/* Glow dinámico */
+.footer-logo-wrapper::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,78,0,0.25), transparent 60%);
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.footer-logo-wrapper:hover::before{
+  opacity: 1;
+}
 .footer-title-fallback{
   display:none;
   color: #fff;
@@ -1040,8 +1066,10 @@ header.scrolled .logo img{
 
       <!-- Columna 1: Imagen centrada -->
       <div class="footer-brand">
-        <img src="assets/logo3.png" alt="PERFORM LAB" class="footer-logo"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="footer-logo-wrapper">
+  <img src="assets/logo3.png" alt="PERFORM LAB" class="footer-logo"
+       onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+</div>
         <h3 class="footer-title-fallback">PERFORM LAB</h3>
       </div>
 
@@ -1144,6 +1172,45 @@ header.scrolled .logo img{
                 }
             });
         });
+        // ===== FOOTER LOGO INTERACTIVO =====
+
+const logoWrapper = document.querySelector('.footer-logo-wrapper');
+const logo = document.querySelector('.footer-logo');
+
+if (logoWrapper && logo) {
+
+  if (window.matchMedia("(pointer: fine)").matches) {
+
+    logoWrapper.addEventListener('mousemove', (e) => {
+        const rect = logoWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateX = ((y / rect.height) - 0.5) * -10;
+        const rotateY = ((x / rect.width) - 0.5) * 10;
+
+        logo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    logoWrapper.addEventListener('mouseleave', () => {
+        logo.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
+    });
+
+  } else {
+
+    logo.animate([
+      { transform: 'rotateY(-3deg)' },
+      { transform: 'rotateY(3deg)' },
+      { transform: 'rotateY(-3deg)' }
+    ], {
+      duration: 4000,
+      iterations: Infinity,
+      easing: "ease-in-out"
+    });
+
+  }
+
+}
     </script>
 </body>
 </html>
